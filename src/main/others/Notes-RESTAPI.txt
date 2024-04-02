@@ -1,0 +1,45 @@
+Java JSON Data Binding
+- data binding is the process of converting JSON data to a Java POJO (or the other way)
+- a.k.a Mapping, Serialization/Deserialization, Marshalling/Unmarshalling
+- Spring uses "Jackson Project" to handle data binding
+- included in "spring boot starter web"
+
+NOTE: JSON key same with the Java attribute
+- JSON -> Java POJO (setter methods)
+- Java POJO -> JSON (getter methods)
+
+Spring Data JPA: eliminate boiler-plate methods
+<JpaRepository>
+- extend and add custom queries with JPQL
+- query domain specific language (Query DSL)
+- define custom methods (low-level coding)
+
+Spring Data REST (response use HATEOAS)
+> default: lowercase first character of entity type + 's'
+> to change: @RepositoryRestResource(path="student")
+<spring-boot-starter-data-rest>
+- pagination (init:0), sorting and searching
+    > pagination: url?page=1 (spring.data.rest.*)
+    > sorting: url?sort=<attribute>,desc
+- extending and adding custom queries with JPQL
+- query domain specific language (query DSL)
+
+Spring Security Filters
+> Declarative Security
+- define app's security constraints in configuration: @Configuration
+- provide separation of concerns between app code and security
+> Programmatic Security
+- spring security API for custom app coding
+- provide greater customization for specific app requirements
+
+CSRF (Cross-Site Request Forgery)
+- spring security can protect against CSRF attacks
+- embed additional authentication data/token into all HTML forms
+- REST API for non-browser clients -> disable CSRF protection
+- (general) not required for stateless REST APIs (PUT,POST,DELETE and/or PATCH)
+> internally spring security uses "ROLE_" prefix
+
+Bcrypt Algorithm
+- perform one-way encrypted hashing
+- add a random salt to the password for additional protection
+- include support to defeat brute force attacks

@@ -1,0 +1,102 @@
+Goals of Spring Framework
+- lightweight development with Java POJOs
+- dependency injection to promote loose coupling (using configuration or annotations)
+- minimize boilerplate Java code (collections of helper classes to minimize code)
+
+a. Core Container: factory for creating beans and manage bean dependencies
+> Beans, Core, SpeEL, Context
+b. Infrastructure: add functionality to objects declaratively
+> AOP, Aspects, Instrumentation, Messaging
+c. Data Access Layer
+> JDBC, ORM, Transactions, OXM, JMS
+d. Web Layer: all web related classes
+> Servlet, Websocket, Web
+e. Test Layer: supports TDD; mock objects and out-of-container testing
+> Unit, Integration, Mock
+
+______________________________________________________________________
+
+Maven
+- build management and dependencies
+- downloads JAR files for the project and make them available during compile/run
+    > downloads supporting dependencies
+    > handles class/build path, adds JAR files accordingly when building and running app
+- provides standard directory structure
+
+pom.xml (Project Object Model)
+- file containing the configurations
+
+application.properties (default properties file)
+- contain application properties
+
+NOTE:
+- Do not use src/main/webapp directory if the application is packaged as a JAR. It only works for WAR packaging.
+
+______________________________________________________________________
+
+Run spring boot using command line
+a. java -jar <jar file name>
+b. mvn package; mvn spring-boot:run
+
+______________________________________________________________________
+
+Spring Boot Starters
+- collection of Maven dependencies that are grouped together
+- reduces amount of Maven configuration; easier to get started with Spring
+e.g. spring-boot-starter-web, spring-boot-starter-security
+
+Spring Boot Starter Parent (spring-boot-starter-parent)
+- specify the version of spring boot
+- version inherited by spring dependencies
+
+Spring Boot Dev Tools (spring-boot-devtools)
+- automatically restarts the app when code is updated (not supported by IntelliJ by default)
+
+Spring Boot Actuator (spring-boot-starter-actuators)
+- exposes endpoints to monitor and manage app
+- REST endpoints automatically added to the app
+- prefix with: /actuator
+
+> /health: checks the status of the application; customizable and exposed by default
+> /info: provide more info about the application
+    - application.properties: everything that starts with "info" will be used by info actuator
+
+Spring Boot Security
+- add security to project and endpoints (/health is exposed by default)
+- prompt for login: user=user; password=<check terminal>
+
+______________________________________________________________________
+
+Inversion of Control (IoC)
+- the approach of outsourcing the construction and management of objects
+- allow the framework to do the binding and instantiation of dependencies
+
+Spring Container
+- create and manage objects (inversion of control)
+- inject object dependencies (dependency injection)
+- configuration
+    > XML configuration file (legacy)
+    > Java annotations (modern)
+    > Java source code (modern)
+
+Dependency Injection
+- client delegates to another object the responsibility of providing its dependencies
+- the creation and binding of dependencies are done outside of the dependent class
+
+Injection Types
+- Constructor Injection: required dependencies
+- Setter Injection: optional dependencies
+- Field Injection: set field values on class directly -> not recommended (hard to unit test)
+
+Lazy Initialization
+- a bean will only be initialized if
+    > needed for dependency injection
+    > explicitly requested
+- a. annotate @Lazy on each class
+- b. use application properties to initialize globally
+- advantages: creates object when needed; faster startup
+- disadvantages: late discovery of config and memory allocation issues
+
+Bean Scope
+- singleton: single bean instance (by default)
+- prototype: multiple bean instances (lazy init by default -> configured destruction lifecycle callbacks are not called)

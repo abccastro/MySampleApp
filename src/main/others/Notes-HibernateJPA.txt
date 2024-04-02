@@ -1,0 +1,22 @@
+Hibernate
+- a framework for persisting / saving Java objects in a database
+- handles all of the low-level SQL; minimizes the JDBC code to develop
+- provides ORM (Object-to-Relational Mapping)
+
+JPA (Jakarta Persistence API)
+- standard API for ORM
+- only a specification (most popular: hibernate)
+    > defines a set of interfaces
+    > requires an implementation to be usable
+- not locked to vendor's implementation
+
+Note:
+- Hibernate/JPA uses JDBC for all database communications
+- JPA Entity Manager responsible for saving/retrieving entities
+    > EntityManager: low-level control or flexibility
+    > JPARepository: high-level of abstraction
+
+Entity Class
+- java class mapped to a database table
+- must be annotated with @Entity
+- must have a public or protected no-argument constructor
