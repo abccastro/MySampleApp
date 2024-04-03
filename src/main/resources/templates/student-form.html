@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Student Registration</title>
+  <!-- reference CSS file -->
+  <link rel="stylesheet" th:href="@{/css/demo.css}"/>
+</head>
+
+<body>
+
+<h3>Student Registration</h3>
+<i>Fill out the form. Asterisk (*) means required.</i>
+<form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
+  First Name (*): <input type="text" th:field="*{firstName}"/>
+  <!-- add error (if present) -->
+  <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></span>
+  <br/><br/>
+  Last Name (*): <input type="text" th:field="*{lastName}"/>
+  <!-- add error (if present) -->
+  <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></span>
+  <br/><br/>
+  Email (*): <input type="text" th:field="*{email}"/>
+  <!-- add error (if present) -->
+  <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+  <br/><br/>
+  Country (*):
+  <select th:field="*{country}">
+    <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"/>
+  </select>
+  <!-- add error (if present) -->
+  <span th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="error"></span>
+  <br/><br/>
+  Sex (*):
+  <input type="radio" th:field="*{sex}" th:each="tempSex : ${sexes}" th:value="${tempSex}" th:text="${tempSex}"/>
+  <!-- add error (if present) -->
+  <span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}" class="error"></span>
+  <br/><br/>
+  Banks:
+  <input type="checkbox" th:field="*{banks}" th:each="tempBank : ${banks}" th:value="${tempBank}" th:text="${tempBank}"/>
+  <br/><br/>
+  <input type="submit" value="Submit"/>
+</form>
+
+</body>
+
+</html>
