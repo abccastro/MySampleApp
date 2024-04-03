@@ -62,15 +62,18 @@ public class DemoSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests(configurer ->
+        /*http.authorizeHttpRequests(configurer ->
                 configurer
-//                        .requestMatchers(HttpMethod.GET, "/helloworld").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/hello").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/helloworld").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.GET, "/student").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.GET, "/student/**").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.POST, "/student").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.PUT, "/student/**").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.DELETE, "/student/**").hasRole("ADMIN")
-        );
+        );*/
+
+        http.authorizeHttpRequests(requests -> requests.anyRequest().permitAll());
 
         // use HTTP Basic authentication
         http.httpBasic(Customizer.withDefaults());
