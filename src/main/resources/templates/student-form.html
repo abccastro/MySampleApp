@@ -24,6 +24,16 @@
   <!-- add error (if present) -->
   <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
   <br/><br/>
+  Age:
+  <input type="text" th:field="*{age}">
+  <!-- add error (if present) -->
+  <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error"></span>
+  <br/><br/>
+  Postal Code:
+  <input type="text" th:field="*{postalCode}">
+  <!-- add error (if present) -->
+  <span th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" class="error"></span>
+  <br/><br/>
   Country (*):
   <select th:field="*{country}">
     <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"/>
@@ -38,6 +48,11 @@
   <br/><br/>
   Banks:
   <input type="checkbox" th:field="*{banks}" th:each="tempBank : ${banks}" th:value="${tempBank}" th:text="${tempBank}"/>
+  <br/><br/>
+  Bank Code:
+  <input type="text" th:field="*{bankCode}">
+  <!-- add error (if present) -->
+  <span th:if="${#fields.hasErrors('bankCode')}" th:errors="*{bankCode}" class="error"></span>
   <br/><br/>
   <input type="submit" value="Submit"/>
 </form>

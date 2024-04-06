@@ -1,8 +1,8 @@
 package com.metamorph.spring.mysampleapp.entity;
 
+import com.metamorph.spring.mysampleapp.validation.BankCode;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.util.List;
 
@@ -35,7 +35,18 @@ public class Student {
     @NotNull(message = "is required")
     private String sex;
 
+    @NotNull(message = "is required")
+    @Min(value=18, message="must be greater than or equal to 18")
+    @Max(value=65, message="must be less than or equal to 65")
+    private Integer age;
+
+    @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5 characters / digits")
+    private String postalCode;
+
     private List<String> banks;
+
+    @BankCode(value="ABC", message="must start with ABC")
+    private String bankCode;
 
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -102,6 +113,30 @@ public class Student {
         this.banks = banks;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+
+    public String getBankCode() {
+        return bankCode;
+    }
+
+    public void setBankCode(String bankCode) {
+        this.bankCode = bankCode;
+    }
 
     @Override
     public String toString() {
@@ -110,6 +145,8 @@ public class Student {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", age='" + age + '\'' +
+                ", postalCode='" + postalCode + '\'' +
                 ", country='" + country + '\'' +
                 ", sex='" + sex + '\'' +
                 ", banks='" + banks + '\'' +
