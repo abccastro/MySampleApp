@@ -5,7 +5,6 @@ import com.metamorph.spring.mysampleapp.entity.Student;
 import java.util.List;
 import java.util.Optional;
 
-@Deprecated
 public interface StudentService {
 
     List<Student> findAll();

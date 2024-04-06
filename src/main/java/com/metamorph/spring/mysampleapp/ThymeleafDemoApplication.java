@@ -6,18 +6,16 @@ package com.metamorph.spring.mysampleapp;
 
 import com.metamorph.spring.mysampleapp.dao.StudentDAO;
 import com.metamorph.spring.mysampleapp.entity.Student;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 //@SpringBootApplication(scanBasePackages = {"com.metamorph.spring", "com.metamorph.util"})
 @SpringBootApplication
-public class MysampleappApplication {
+public class ThymeleafDemoApplication {
 
 	public static void main(String[] args) {
 		// bootstrap the Spring boot application
-		SpringApplication.run(MysampleappApplication.class, args);
+		SpringApplication.run(ThymeleafDemoApplication.class, args);
 	}
 
 	/*@Bean

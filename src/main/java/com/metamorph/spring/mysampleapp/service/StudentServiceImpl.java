@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Deprecated
 @Service
 public class StudentServiceImpl implements StudentService{
 
@@ -27,7 +26,8 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public List<Student> findAll() {
-        return studentRepository.findAll();
+        return studentRepository.findAllByOrderByLastNameAsc();
+//        return studentRepository.findAll();
     }
 
     @Override

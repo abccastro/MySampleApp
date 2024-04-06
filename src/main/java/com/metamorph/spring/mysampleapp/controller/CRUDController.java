@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
-@Deprecated
 @RestController
 @RequestMapping("api")
 public class CRUDController {
