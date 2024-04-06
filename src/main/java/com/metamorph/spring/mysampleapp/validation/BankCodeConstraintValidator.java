@@ -18,6 +18,6 @@ public class BankCodeConstraintValidator implements ConstraintValidator<BankCode
         if(theBankCode != null) {
             result = theBankCode.startsWith(bankPrefix);
         }
-        return res
+        return result;
     }
 }
