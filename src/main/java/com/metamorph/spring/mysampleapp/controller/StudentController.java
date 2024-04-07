@@ -40,6 +40,11 @@ public class StudentController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
+    @GetMapping("/")
+    public String showHome() {
+        return "home";
+    }
+
     @GetMapping("/list")
     public String listStudents(Model model) {
         // get students from DB

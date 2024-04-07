@@ -3,7 +3,7 @@
  *      binding advice for multiple controllers; for code reusability
  * ExceptionHandler: define methods that handle customized exceptions
  */
-package com.metamorph.spring.mysampleapp.controller;
+package com.metamorph.spring.mysampleapp.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

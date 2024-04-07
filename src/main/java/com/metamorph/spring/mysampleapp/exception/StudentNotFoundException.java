@@ -1,4 +1,4 @@
-package com.metamorph.spring.mysampleapp.controller;
+package com.metamorph.spring.mysampleapp.exception;
 
 public class StudentNotFoundException extends RuntimeException {
 

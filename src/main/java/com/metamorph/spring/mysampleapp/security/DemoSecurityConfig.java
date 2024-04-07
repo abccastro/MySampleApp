@@ -59,10 +59,10 @@ public class DemoSecurityConfig {
         return new InMemoryUserDetailsManager(john, mary, susan);
     }
     */
-    @Bean
+    /*@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        /*http.authorizeHttpRequests(configurer ->
+        *//*http.authorizeHttpRequests(configurer ->
                 configurer
                         .requestMatchers(HttpMethod.GET, "/hello").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.GET, "/helloworld").hasRole("EMPLOYEE")
@@ -71,7 +71,7 @@ public class DemoSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/student").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.PUT, "/student/**").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.DELETE, "/student/**").hasRole("ADMIN")
-        );*/
+        );*//*
 
         http.authorizeHttpRequests(requests -> requests.anyRequest().permitAll());
 
@@ -82,6 +82,21 @@ public class DemoSecurityConfig {
         // in general, not required for stateless REST APIs (POST,PUT,DELETE and/or PATCH)
         http.csrf(csrf -> csrf.disable());
 
+        return http.build();
+    }*/
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(configurer ->
+                configurer
+                        .anyRequest()
+                        .authenticated()
+            ).formLogin(form ->
+                form
+                        .loginPage("/showMyLoginPage")
+                        .loginProcessingUrl("/authenticateTheUser") // provided by spring security
+                        .permitAll()
+        );
         return http.build();
     }
 }
