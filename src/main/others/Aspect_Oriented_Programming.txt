@@ -1,0 +1,23 @@
+Aspect-Oriented Programming
+- programming technique based on concept of an Aspect
+- aspect encapsulates cross-cutting logic
+
+Aspects
+- can be reused at multiple locations
+- can be applied based on configuration
+
+AOP Solution
+- apply the proxy design pattern
+
+Use Cases: logging, security, transactions
+> audit logging, exception handling, API management
+
+Advantages
+- reusable modules
+- resolve code tangling
+- resolve code scatter
+- applied selectively based on configuration
+
+Disadvantages
+- too many aspects and app flow is hard to follow
+- minor performance cost for aspect execution (run-time weaving)

@@ -89,6 +89,12 @@ public class DemoSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurer ->
                 configurer
+                        .requestMatchers("/").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
+                        .requestMatchers("/students/list").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
+                        .requestMatchers("/students/showFormForAdd").hasAnyRole("MANAGER", "ADMIN")
+                        .requestMatchers("/students/showFormForUpdate").hasAnyRole("MANAGER", "ADMIN")
+                        .requestMatchers("/students/save").hasAnyRole("MANAGER", "ADMIN")
+                        .requestMatchers("/students/delete").hasRole("ADMIN")
                         .anyRequest()
                         .authenticated()
             ).formLogin(form ->
@@ -96,7 +102,11 @@ public class DemoSecurityConfig {
                         .loginPage("/showMyLoginPage")
                         .loginProcessingUrl("/authenticateTheUser") // provided by spring security
                         .permitAll()
-        );
+            ).logout(logout ->
+                logout.permitAll()
+            ).exceptionHandling(configurer ->
+                configurer.accessDeniedPage("/accessDenied")
+            );
         return http.build();
     }
 }

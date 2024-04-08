@@ -1,6 +1,6 @@
 /**
  * Configuration: mark the class as a source of bean definitions
- *      Bean Definition: specify the objects that SPring will manage
+ *      Bean Definition: specify the objects that Spring will manage
  *          and make available for dependency injection
  * Bean: provides flexibility in creation and configuring beans to customize instantiation
  *      and setup of objects in spring app context

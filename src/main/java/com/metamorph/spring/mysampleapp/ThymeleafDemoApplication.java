@@ -4,7 +4,7 @@
  */
 package com.metamorph.spring.mysampleapp;
 
-import com.metamorph.spring.mysampleapp.dao.StudentDAO;
+import com.metamorph.spring.mysampleapp.dao.AppDAO;
 import com.metamorph.spring.mysampleapp.entity.Student;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +25,7 @@ public class ThymeleafDemoApplication {
 		};
 	}*/
 
-	private void createStudent(StudentDAO studentDAO) {
+	private void createStudent(AppDAO studentDAO) {
 
 		System.out.println("Creating new student object");
 		Student tempStudent = new Student("Aura", "Dee", "auradee@metamorph.com");
@@ -36,7 +36,7 @@ public class ThymeleafDemoApplication {
 		System.out.println("Student student. Generated ID: " + tempStudent.getId());
 	}
 
-	private void readStudent(StudentDAO studentDAO) {
+	private void readStudent(AppDAO studentDAO) {
 		System.out.println("Reading student object");
 		Student tempStudent = studentDAO.findById(1);
 

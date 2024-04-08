@@ -1,15 +1,15 @@
 package com.metamorph.spring.mysampleapp.entity;
 
-import com.metamorph.spring.mysampleapp.validation.BankCode;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="student")
-public class Student {
+@Table(name="instructor")
+public class Instructor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,28 +30,10 @@ public class Student {
     @Column(name="email")
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_detail_id")
-    private StudentDetail studentDetail;
-
-    @ManyToMany(fetch = FetchType.LAZY,
-                cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
-    @JoinTable(
-            name = "course_student",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
-    )
+    @OneToMany(mappedBy = "instructor",     // reference to 'instructor' property in Course class
+                fetch = FetchType.LAZY,     // override fetch type (LAZY or EAGER) [NOTE:Use JOIN FETCH]
+                cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Course> courses;
-
-
-    public Student(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public Student() {
-    }
 
     public int getId() {
         return id;
@@ -85,14 +67,6 @@ public class Student {
         this.email = email;
     }
 
-    public StudentDetail getStudentDetail() {
-        return studentDetail;
-    }
-
-    public void setStudentDetail(StudentDetail studentDetail) {
-        this.studentDetail = studentDetail;
-    }
-
     public List<Course> getCourses() {
         return courses;
     }
@@ -101,21 +75,23 @@ public class Student {
         this.courses = courses;
     }
 
-    public void add(Course course) {
-        if(courses == null) {
+    // for bi-directional relationship
+    public void add(Course tempCouse) {
+        if (courses == null) {
             courses = new ArrayList<>();
         }
-        courses.add(course);
+        courses.add(tempCouse);
+        tempCouse.setInstructor(this);
     }
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Instructor{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", studentDetail='" + studentDetail + '\'' +
+                ", courses='" + courses + '\'' +
                 '}';
     }
 }

@@ -40,11 +40,6 @@ public class StudentController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-    @GetMapping("/")
-    public String showHome() {
-        return "home";
-    }
-
     @GetMapping("/list")
     public String listStudents(Model model) {
         // get students from DB
@@ -64,6 +59,7 @@ public class StudentController {
 
     @PostMapping("/save")
     public String saveStudent(@ModelAttribute("student") Student student) {
+
         // save the student
         studentService.save(student);
 
