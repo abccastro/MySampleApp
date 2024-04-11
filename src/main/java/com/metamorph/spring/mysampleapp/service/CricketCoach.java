@@ -20,6 +20,8 @@ import org.springframework.stereotype.Component;
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class CricketCoach implements Coach {
 
+
+
     public CricketCoach() {
         System.out.println("In constructor: " + getClass().getSimpleName());
     }

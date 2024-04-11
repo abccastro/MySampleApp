@@ -21,3 +21,46 @@ Advantages
 Disadvantages
 - too many aspects and app flow is hard to follow
 - minor performance cost for aspect execution (run-time weaving)
+
+AOP Terminology
+- Aspect: module of code for a cross-cutting concerns
+- Advice: what action is taken and when it should be applied
+- Join Point: when to apply code during program execution
+- Pointcut: a predicate expression for where advice should be applied
+
+Advice Types:
+- Before advice: run before the method
+- After finally advice: run after the method (finally)
+- After returning advice: run after the method (success execution)
+- After throwing advice: run after method (if exception thrown)
+- Around advice: run before and after the method
+
+Weaving
+- connecting aspects to target objects to create an advised object
+- types: compile-time, load-time and run-time (slowest)
+
+AOP Frameworks -> AspectJ and Spring AOP
+
+Spring AOP Comparison
+Advantages:
+- simpler to use than AspectJ
+- uses Proxy pattern
+- can migrate to AspectJ when using @Aspect annotation
+Disadvantages:
+- only support method-level join points
+- can only apply aspects to beans created by Spring app context
+- minor performance cost (run-time weaving)
+
+AspectJ Comparison
+Advantages:
+- support all join points
+- works with any POJO, not just beans from app context
+- faster performance
+- complete AOP support
+Disadvantages:
+- compile-time weaving requires extra compilation step
+- AspectJ pointcut syntax can become complex
+
+References:
+- AspectJ in Action by Raminvas Laddad
+- Aspect-Oriented Development with Use Cases by Ivar Jacobson and Pan-Wei Ng
